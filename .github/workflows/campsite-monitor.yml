@@ -46,15 +46,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/requirements*.txt') }}
+          key: ${{ runner.os }}-playwright-chromium-firefox-${{ hashFiles('**/requirements*.txt') }}
           restore-keys: |
-            ${{ runner.os }}-playwright-chromium-
+            ${{ runner.os }}-playwright-chromium-firefox-
 
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
-          python -m playwright install chromium
-          python -m playwright install-deps chromium
+          python -m playwright install chromium firefox
+          python -m playwright install-deps chromium firefox
 
       - name: Restore monitor state
         # If a previous state file was committed, it's already in the checkout.
