@@ -166,7 +166,7 @@ SEARCHES = [
 ]
 
 # Scrapers that use the API directly (no Playwright page needed)
-API_SCRAPERS = {"recreation_gov", "michigan_dnr"}
+API_SCRAPERS = {"recreation_gov"}
 
 STATE_FILE  = Path(__file__).parent / "monitor_state.json"
 LOG_FILE    = Path(__file__).parent / "monitor.log"
@@ -654,15 +654,37 @@ def scrape_glamping_hub(page, url: str) -> list[dict]:
     return results
 
 
-def scrape_michigan_dnr(url: str) -> list[dict]:
+def scrape_michigan_dnr(page, url: str) -> list[dict]:
     """
     Queries Michigan DNR's GoingToCamp API for Ionia Recreation Area campsite availability.
     Checks Modern Campground (sites 1-50, 51-100), Auxiliary, and Beechwood for Aug 28-30.
     Availability code 0 = open/available; 1 = reserved; 3 = closed; 4-5 = not reservable.
     resourceLocationId -2147483575 = Ionia Recreation Area
+
+    Uses a Playwright page to establish a real browser session first, then extracts cookies
+    to authenticate the subsequent API calls (direct urllib calls get 403 without a session).
     """
     BASE = "https://midnrreservations.com/api"
-    # Omit Accept-Encoding so the server returns plain JSON (no brotli/gzip needed)
+    BOOK_URL = "https://midnrreservations.com/camping/search#resourceLocationId=-2147483575"
+    RESOURCE_LOCATION_ID = -2147483575  # Ionia Recreation Area
+    MAPS = {
+        "Modern Campground (sites 1–50)":   -2147483378,
+        "Modern Campground (sites 51–100)": -2147483377,
+        "Auxiliary Campground":             -2147483373,
+        "Beechwood Campground":             -2147482934,
+    }
+
+    # Navigate to the site to establish a valid session and collect cookies
+    try:
+        page.goto("https://midnrreservations.com/", wait_until="domcontentloaded", timeout=30000)
+        page.wait_for_timeout(2000)  # let any JS set session cookies
+    except Exception as e:
+        log(f"  Michigan DNR: failed to load session page — {e}")
+        return []
+
+    cookies = page.context.cookies()
+    cookie_str = "; ".join(f"{c['name']}={c['value']}" for c in cookies)
+
     HEADERS = {
         "User-Agent": (
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -672,18 +694,11 @@ def scrape_michigan_dnr(url: str) -> list[dict]:
         "Accept-Language": "en-US,en;q=0.9",
         "Referer":         "https://midnrreservations.com/",
         "Origin":          "https://midnrreservations.com",
+        "Cookie":          cookie_str,
         "sec-fetch-dest":  "empty",
         "sec-fetch-mode":  "cors",
         "sec-fetch-site":  "same-origin",
     }
-    RESOURCE_LOCATION_ID = -2147483575  # Ionia Recreation Area
-    MAPS = {
-        "Modern Campground (sites 1–50)":   -2147483378,
-        "Modern Campground (sites 51–100)": -2147483377,
-        "Auxiliary Campground":             -2147483373,
-        "Beechwood Campground":             -2147482934,
-    }
-    BOOK_URL = "https://midnrreservations.com/camping/search#resourceLocationId=-2147483575"
 
     results = []
     for name, map_id in MAPS.items():
@@ -1490,14 +1505,15 @@ def main():
         )
 
         BROWSER_CTX = {
-            "hipcamp":     chromium_ctx,
-            "airbnb":      chromium_ctx,
-            "vrbo":        firefox_ctx,
-            "booking":     firefox_ctx,   # Firefox for better bot avoidance
-            "vacasa":      chromium_ctx,
+            "hipcamp":      chromium_ctx,
+            "airbnb":       chromium_ctx,
+            "vrbo":         firefox_ctx,
+            "booking":      firefox_ctx,   # Firefox for better bot avoidance
+            "vacasa":       chromium_ctx,
             "glamping_hub": chromium_ctx,
-            "campspot":    chromium_ctx,
-            "snow_lake":   chromium_ctx,
+            "campspot":     chromium_ctx,
+            "snow_lake":    chromium_ctx,
+            "michigan_dnr": chromium_ctx,  # needs real session for API auth
         }
 
         for search in SEARCHES:
