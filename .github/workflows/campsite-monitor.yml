@@ -33,13 +33,13 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-playwright-stealth
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install Python dependencies
         run: |
-          pip install playwright playwright-stealth
+          pip install -r requirements.txt
 
       - name: Cache Playwright browsers
         id: playwright-cache
