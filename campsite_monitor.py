@@ -990,6 +990,16 @@ def write_status_page(state: dict):
     elif days_left <= 14:
         expiry_chip = f'<span class="chip chip-warn">Expires in {days_left} days</span>'
 
+    last_run = state.get("_last_run", {})
+    if last_run:
+        if last_run.get("ok"):
+            health_chip = '<span class="chip">&#10003; Last run healthy</span>'
+        else:
+            error_names = ", ".join(last_run.get("errors", []))
+            health_chip = f'<span class="chip chip-warn">&#9888; Errors: {error_names}</span>'
+    else:
+        health_chip = ""
+
     css = """
       :root {
         --green:#16a34a;--green-100:#dcfce7;--green-700:#15803d;
@@ -1076,7 +1086,7 @@ def write_status_page(state: dict):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="refresh" content="1800">
+  <meta http-equiv="refresh" content="7200">
   <title>Campsite Monitor</title>
   <style>{css}</style>
 </head>
@@ -1087,8 +1097,9 @@ def write_status_page(state: dict):
     <p class="hero-sub">Watching 8 platforms &#183; within 10 miles of Ionia, MI &#183; Aug 28-30, 2026</p>
     <div class="hero-chips">
       <span class="chip"><span class="live-dot"></span>Monitoring active</span>
-      <span class="chip">Auto-refreshes every 30 min</span>
+      <span class="chip">Checks every 2 hours</span>
       <span class="chip">Updated <time class="local-time" data-utc="{now_utc}" data-fmt="datetime">–</time></span>
+      {health_chip}
       {expiry_chip}
     </div>
   </div>
@@ -1103,7 +1114,7 @@ def write_status_page(state: dict):
     <div class="stat-card">
       <div class="stat-label">Last Check</div>
       <div class="stat-value sm"><time class="local-time" data-utc="{last_check_utc}" data-fmt="time">–</time></div>
-      <div class="stat-sub">runs every 30 min</div>
+      <div class="stat-sub">runs every 2 hours</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Days to Trip</div>
@@ -1461,6 +1472,7 @@ def main():
     log("--- Monitor run started ---")
     state  = load_state()
     alerts = []
+    scraper_errors = []
 
     with sync_playwright() as pw:
         chromium = pw.chromium.launch(
@@ -1531,6 +1543,7 @@ def main():
                     page.close()
             except Exception as e:
                 log(f"  ERROR scraping {name}: {e}")
+                scraper_errors.append(name)
                 results = []
 
             if results is None:
@@ -1563,6 +1576,13 @@ def main():
 
         chromium.close()
         firefox.close()
+
+    # Record run health in state for dashboard display
+    state["_last_run"] = {
+        "time":   datetime.now(timezone.utc).isoformat(),
+        "errors": scraper_errors,
+        "ok":     len(scraper_errors) == 0,
+    }
 
     save_state(state)
     write_status_page(state)
