@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="refresh" content="1800">
+  <title>Campsite Monitor</title>
+  <style>
+      :root {
+        --green:#16a34a;--green-100:#dcfce7;--green-700:#15803d;
+        --gray-100:#f3f4f6;--gray-400:#9ca3af;--gray-500:#6b7280;
+        --gray-700:#374151;--gray-800:#1f2937;--gray-900:#111827;
+        --shadow-md:0 4px 8px -2px rgba(0,0,0,.08),0 2px 4px -2px rgba(0,0,0,.04);
+      }
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Inter",sans-serif;
+           background:#eef2f7;color:var(--gray-900);min-height:100vh}
+      .hero{background:linear-gradient(135deg,#052e16 0%,#064e3b 55%,#065f46 100%);
+            padding:44px 24px 64px;position:relative;overflow:hidden}
+      .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:360px;height:360px;
+                    background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 65%);
+                    border-radius:50%;pointer-events:none}
+      .hero-inner{max-width:900px;margin:auto;position:relative;z-index:1}
+      .hero h1{font-size:30px;font-weight:700;color:#fff;letter-spacing:-.5px;margin-bottom:8px}
+      .hero-sub{color:rgba(255,255,255,.65);font-size:14px;margin-bottom:22px}
+      .hero-chips{display:flex;gap:8px;flex-wrap:wrap}
+      .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.11);
+            border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.88);border-radius:20px;
+            padding:5px 14px;font-size:12px;font-weight:500}
+      .chip-warn{background:rgba(220,38,38,.18);border-color:rgba(220,38,38,.35);color:#fca5a5}
+      .live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;
+                animation:pulse 2.2s ease-in-out infinite}
+      @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.45)}}
+      .container{max-width:900px;margin:-26px auto 0;padding:0 24px 56px;position:relative;z-index:2}
+      .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+      .stat-card{background:#fff;border-radius:14px;padding:18px 20px 16px;box-shadow:var(--shadow-md)}
+      .stat-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;
+                  color:var(--gray-400);margin-bottom:6px}
+      .stat-value{font-size:26px;font-weight:700;color:var(--gray-900);line-height:1.1}
+      .stat-value.sm{font-size:15px;font-weight:600}
+      .stat-value.green{color:var(--green)}
+      .stat-sub{font-size:11px;color:var(--gray-400);margin-top:2px}
+      .section-header{margin:28px 0 12px}
+      .section-title{font-size:15px;font-weight:600;color:var(--gray-800)}
+      .section-sub{font-size:12px;color:var(--gray-400);margin-top:3px}
+      .search-card{background:#fff;border-radius:14px;box-shadow:var(--shadow-md);
+                   padding:20px 22px;margin-bottom:12px;border-left:4px solid var(--gray-100);
+                   transition:border-color .2s,box-shadow .2s}
+      .search-card.has-results{border-left-color:var(--green);
+                                box-shadow:0 4px 14px rgba(22,163,74,.13)}
+      .search-card-header{display:flex;justify-content:space-between;
+                           align-items:flex-start;gap:16px}
+      .search-name{font-size:15px;font-weight:600;color:var(--gray-800);margin-bottom:3px}
+      .search-meta{font-size:12px;color:var(--gray-400)}
+      .search-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+      .badge{display:inline-flex;align-items:center;gap:5px;border-radius:20px;
+             padding:4px 12px;font-size:12px;font-weight:600;white-space:nowrap}
+      .badge-green{background:var(--green-100);color:var(--green-700)}
+      .badge-gray{background:var(--gray-100);color:var(--gray-500)}
+      .view-link{font-size:12px;color:var(--green);text-decoration:none;font-weight:500}
+      .view-link:hover{text-decoration:underline}
+      .listing-list{list-style:none;margin-top:14px;padding-top:12px;
+                    border-top:1px solid var(--gray-100)}
+      .listing-item{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:13px;
+                    color:var(--gray-700);border-bottom:1px solid var(--gray-100)}
+      .listing-item:last-child{border-bottom:none}
+      .listing-item::before{content:'';width:6px;height:6px;background:var(--green);
+                             border-radius:50%;flex-shrink:0}
+      .no-listings{margin-top:12px;font-size:13px;color:var(--gray-400);font-style:italic}
+      .card{background:#fff;border-radius:14px;box-shadow:var(--shadow-md);
+            padding:20px 22px;margin-bottom:16px}
+      .log-terminal{background:#0d1117;border-radius:8px;padding:16px;max-height:300px;
+                    overflow-y:auto;font-family:"SF Mono","Cascadia Code","Fira Code",
+                    ui-monospace,monospace;scrollbar-width:thin;scrollbar-color:#30363d transparent}
+      .log-line{font-size:12px;line-height:1.75;color:#8b949e}
+      .log-line.error{color:#f85149}.log-line.warn{color:#d29922}
+      .log-line.success{color:#3fb950}.log-line.sep{color:#2d3748}
+      .footer{text-align:center;font-size:12px;color:var(--gray-400);padding-bottom:36px}
+      .footer a{color:var(--green);text-decoration:none}
+      @media(max-width:600px){
+        .hero{padding:28px 16px 52px}.hero h1{font-size:24px}
+        .container{padding:0 16px 36px}
+        .stats-grid{grid-template-columns:repeat(2,1fr)}
+        .search-card-header{flex-direction:column}
+        .search-right{width:100%;justify-content:flex-end}
+      }
+    </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>&#127957;&#65039; Campsite Monitor</h1>
+    <p class="hero-sub">Watching 8 platforms &#183; within 10 miles of Ionia, MI &#183; Aug 28-30, 2026</p>
+    <div class="hero-chips">
+      <span class="chip"><span class="live-dot"></span>Monitoring active</span>
+      <span class="chip">Checks twice daily</span>
+      <span class="chip">Updated <time class="local-time" data-utc="2026-03-26T15:43:49.326075+00:00" data-fmt="datetime">–</time></span>
+      
+    </div>
+  </div>
+</header>
+<main class="container">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total Listings</div>
+      <div class="stat-value green">0</div>
+      <div class="stat-sub">across 8 sites</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Last Check</div>
+      <div class="stat-value sm"><time class="local-time" data-utc="2026-03-26T15:43:48.389707+00:00" data-fmt="time">–</time></div>
+      <div class="stat-sub">runs twice daily</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Days to Trip</div>
+      <div class="stat-value">155</div>
+      <div class="stat-sub">days away</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Monitor Expires</div>
+      <div class="stat-value sm">Jul 31, 2026</div>
+      <div class="stat-sub">127 days remaining</div>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2 class="section-title">Active Searches</h2>
+    <p class="section-sub">Email + GitHub Issue created when new listings appear</p>
+  </div>
+  
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Hipcamp — Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:41:14.815664+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.hipcamp.com/en-US/search?groupSize=2&amp;arrive=2026-08-28&amp;depart=2026-08-30&amp;adults=2&amp;children=0&amp;lat=42.982743&amp;lng=-85.063192&amp;radius=10&amp;placeId=place.160082156&amp;placeName=Ionia%2C+Michigan%2C+United+States&amp;q=Ionia&amp;searchSource=search-again-home&amp;mapLayers=nationalParkSystem&amp;mapLayers=nationalForests&amp;mapLayers=publicCampgrounds" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Airbnb — Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:42:19.095291+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.airbnb.com/s/Ionia--Michigan--United-States/homes?checkin=2026-08-28&amp;checkout=2026-08-30&amp;adults=2&amp;children=0&amp;ne_lat=43.1276&amp;ne_lng=-84.8656&amp;sw_lat=42.8378&amp;sw_lng=-85.2608&amp;search_by_map=true" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">VRBO — Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:03.746126+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.vrbo.com/search?destination=Ionia%2C+Michigan%2C+United+States&amp;startDate=2026-08-28&amp;endDate=2026-08-30&amp;adults=2&amp;neLat=43.1276&amp;neLng=-84.8656&amp;swLat=42.8378&amp;swLng=-85.2608" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Recreation.gov — Near Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:03.965996+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.recreation.gov/search?lat=42.982743&amp;lng=-85.063192&amp;radius=10&amp;entity_type=campground" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Booking.com — Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:17.694247+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.booking.com/searchresults.html?ss=Ionia%2C+Michigan%2C+United+States&amp;checkin=2026-08-28&amp;checkout=2026-08-30&amp;group_adults=2&amp;no_rooms=1&amp;radius=16&amp;radiusUnit=km&amp;order=price" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Vacasa — Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:38.309861+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://www.vacasa.com/search?adults=2&amp;children=0&amp;pets=0&amp;arrival=2026-08-28&amp;departure=2026-08-30&amp;location=Ionia%2C+Michigan" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">GlampingHub — Near Ionia, MI (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:47.641941+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://glampinghub.com/rentalsearch/?checkin=2026-08-28&amp;checkout=2026-08-30&amp;guests=2&amp;q=Ionia%2C+Michigan%2C+United+States" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+    <div class="search-card">
+      <div class="search-card-header">
+        <div class="search-info">
+          <div class="search-name">Michigan DNR — Ionia SRA + Beechwood (Aug 28-30)</div>
+          <div class="search-meta"> &nbsp;&middot;&nbsp; Checked <time class="local-time" data-utc="2026-03-26T15:43:48.389707+00:00" data-fmt="time">–</time></div>
+        </div>
+        <div class="search-right">
+          <span class="badge badge-gray">○ 0 listings</span>
+          <a href="https://midnrreservations.com/camping/search#resourceLocationId=-2147483575" target="_blank" class="view-link">Search</a>
+        </div>
+      </div>
+      <p class="no-listings">No listings found yet.</p>
+    </div>
+  <div class="section-header" style="margin-top:32px">
+    <h2 class="section-title">Recent Activity</h2>
+  </div>
+  <div class="card">
+    <div class="log-terminal"><div class="log-line success">[2026-03-26 11:43:48]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:43:48]   Michigan DNR: Beechwood Campground — no availability</div>
+<div class="log-line">[2026-03-26 11:43:48]   Michigan DNR: Auxiliary Campground — no availability</div>
+<div class="log-line">[2026-03-26 11:43:48]   Michigan DNR: Modern Campground (sites 51–100) — no availability</div>
+<div class="log-line">[2026-03-26 11:43:47]   Michigan DNR: Modern Campground (sites 1–50) — no availability</div>
+<div class="log-line">[2026-03-26 11:43:47] Checking: Michigan DNR — Ionia SRA + Beechwood (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:43:47]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:43:38] Checking: GlampingHub — Near Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:43:38]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:43:17] Checking: Vacasa — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:43:17]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:43:03] Checking: Booking.com — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:43:03]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:43:03]   Recreation.gov: 0 campground(s) within 10mi</div>
+<div class="log-line">[2026-03-26 11:43:03] Checking: Recreation.gov — Near Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:43:03]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:42:19] Checking: VRBO — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:42:19]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:41:14] Checking: Airbnb — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 11:41:14]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 11:40:11] Checking: Hipcamp — Ionia, MI (Aug 28-30)</div>
+<div class="log-line sep">[2026-03-26 11:39:59] --- Monitor run started ---</div>
+<div class="log-line sep">[2026-03-26 10:39:57] --- Run complete ---</div>
+<div class="log-line success">[2026-03-26 10:39:57] No new listings. No alerts sent.</div>
+<div class="log-line success">[2026-03-26 10:39:57] GitHub Pages deploy: ca871c5 -> https://mattkaz.github.io/campsite-status/</div>
+<div class="log-line success">[2026-03-26 10:39:52]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 10:39:52]   Michigan DNR: Beechwood Campground — no availability</div>
+<div class="log-line">[2026-03-26 10:39:52]   Michigan DNR: Auxiliary Campground — no availability</div>
+<div class="log-line">[2026-03-26 10:39:52]   Michigan DNR: Modern Campground (sites 51–100) — no availability</div>
+<div class="log-line">[2026-03-26 10:39:52]   Michigan DNR: Modern Campground (sites 1–50) — no availability</div>
+<div class="log-line">[2026-03-26 10:39:51] Checking: Michigan DNR — Ionia SRA + Beechwood (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 10:39:51]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 10:39:40] Checking: GlampingHub — Near Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 10:39:40]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 10:39:17] Checking: Vacasa — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 10:39:17]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 10:39:00] Checking: Booking.com — Ionia, MI (Aug 28-30)</div>
+<div class="log-line success">[2026-03-26 10:39:00]   0 listing(s) found (was 0)</div>
+<div class="log-line">[2026-03-26 10:39:00]   Recreation.gov: 0 campground(s) within 10mi</div>
+</div>
+  </div>
+</main>
+<footer class="footer">
+  <a href="https://mattkaz.github.io/campsite-status/">https://mattkaz.github.io/campsite-status/</a>
+  &nbsp;&#183;&nbsp; Expires July 31, 2026
+  &nbsp;&#183;&nbsp; 127 days remaining
+  &nbsp;&#183;&nbsp; <a href="https://github.com/mattkaz/campsite-monitor/issues">GitHub Issues</a>
+</footer>
+<script>
+  // Convert every [data-utc] element to the viewer's local timezone.
+  // data-fmt="time"     → "Mar 18 - 2:38 PM"  (used in cards + stat)
+  // data-fmt="datetime" → "Mar 18, 2026 at 2:38 PM"  (used in hero chip)
+  (function() {
+    document.querySelectorAll('time.local-time[data-utc]').forEach(function(el) {
+      var raw = el.dataset.utc;
+      if (!raw) return;
+      try {
+        var d = new Date(raw);
+        if (isNaN(d)) return;
+        var fmt = el.dataset.fmt;
+        if (fmt === 'datetime') {
+          el.textContent = d.toLocaleString(undefined, {
+            month: 'short', day: 'numeric', year: 'numeric',
+            hour: 'numeric', minute: '2-digit'
+          });
+        } else {
+          el.textContent = d.toLocaleString(undefined, {
+            month: 'short', day: 'numeric',
+            hour: 'numeric', minute: '2-digit'
+          });
+        }
+      } catch(e) {}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+name: Campsite Availability Monitor
+
+on:
+  schedule:
+    # Run every 2 hours
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+    inputs:
+      test_email:
+        description: 'Send a test email instead of running scrapers (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write      # needed to commit monitor_state.json back
+  issues: write        # needed to create GitHub Issues alerts
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-playwright-stealth
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install Python dependencies
+        run: |
+          pip install playwright playwright-stealth
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-chromium-
+
+      - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: |
+          python -m playwright install chromium
+          python -m playwright install-deps chromium
+
+      - name: Restore monitor state
+        # If a previous state file was committed, it's already in the checkout.
+        # This step just confirms it's present (or creates an empty one).
+        run: |
+          if [ ! -f monitor_state.json ]; then
+            echo '{}' > monitor_state.json
+          fi
+
+      - name: Run campsite monitor
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          # GITHUB_TOKEN is automatically provided by Actions — no secret needed
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GH_TOKEN (personal access token) is required to push the dashboard
+          # to the separate public campsite-status repo for GitHub Pages.
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if [ "${{ github.event.inputs.test_email }}" = "true" ]; then
+            python campsite_monitor.py --test-email
+          else
+            python campsite_monitor.py
+          fi
+
+      - name: Commit updated state back to repo
+        run: |
+          git config user.name  "campsite-monitor[bot]"
+          git config user.email "campsite-monitor[bot]@users.noreply.github.com"
+          git add monitor_state.json
+          # Only commit if state actually changed
+          if git diff --cached --quiet; then
+            echo "No state changes — skipping commit."
+          else
+            git commit -m "chore: update monitor state [skip ci]"
+            # Retry push up to 3 times to handle concurrent-run race conditions.
+            # If two runs overlap and both commit state, the second push is rejected.
+            # We pull --rebase and retry; if there's still a conflict we abort and
+            # skip — the next scheduled run will sync state correctly.
+            for attempt in 1 2 3; do
+              if git push; then
+                echo "State pushed on attempt ${attempt}."
+                break
+              fi
+              echo "Push rejected (attempt ${attempt}) — pulling and retrying..."
+              if ! git pull --rebase; then
+                git rebase --abort
+                echo "Rebase conflict detected — skipping state update. Next run will re-sync."
+                break
+              fi
+            done
+          fi
+
+      - name: Email on workflow failure
+        if: failure()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python campsite_monitor.py --notify-failure
