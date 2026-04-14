@@ -19,6 +19,8 @@ jobs:
   monitor:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Check out repo
@@ -54,6 +56,9 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
           python -m playwright install chromium firefox
+
+      - name: Install Playwright system dependencies
+        run: |
           python -m playwright install-deps chromium firefox
 
       - name: Restore monitor state
