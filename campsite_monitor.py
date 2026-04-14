@@ -992,11 +992,17 @@ def write_status_page(state: dict):
 
     last_run = state.get("_last_run", {})
     if last_run:
+        errors   = last_run.get("errors", [])
+        bot_hits = last_run.get("bot_hits", [])
         if last_run.get("ok"):
             health_chip = '<span class="chip">&#10003; Last run healthy</span>'
+        elif errors and bot_hits:
+            health_chip = (f'<span class="chip chip-warn">&#9888; Errors: {", ".join(errors)}'
+                           f' &middot; Bot blocked: {", ".join(bot_hits)}</span>')
+        elif errors:
+            health_chip = f'<span class="chip chip-warn">&#9888; Errors: {", ".join(errors)}</span>'
         else:
-            error_names = ", ".join(last_run.get("errors", []))
-            health_chip = f'<span class="chip chip-warn">&#9888; Errors: {error_names}</span>'
+            health_chip = f'<span class="chip chip-warn">&#128274; Bot blocked: {", ".join(bot_hits)}</span>'
     else:
         health_chip = ""
 
@@ -1472,7 +1478,8 @@ def main():
     log("--- Monitor run started ---")
     state  = load_state()
     alerts = []
-    scraper_errors = []
+    scraper_errors   = []
+    scraper_bot_hits = []
 
     with sync_playwright() as pw:
         chromium = pw.chromium.launch(
@@ -1548,6 +1555,7 @@ def main():
 
             if results is None:
                 log(f"  WARNING: bot-detection for {name} -- skipping this run")
+                scraper_bot_hits.append(name)
                 continue
 
             prev       = state.get(name, {})
@@ -1579,9 +1587,10 @@ def main():
 
     # Record run health in state for dashboard display
     state["_last_run"] = {
-        "time":   datetime.now(timezone.utc).isoformat(),
-        "errors": scraper_errors,
-        "ok":     len(scraper_errors) == 0,
+        "time":     datetime.now(timezone.utc).isoformat(),
+        "errors":   scraper_errors,
+        "bot_hits": scraper_bot_hits,
+        "ok":       len(scraper_errors) == 0 and len(scraper_bot_hits) == 0,
     }
 
     save_state(state)
