@@ -17,42 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T11:59:40.737639+00:00"
+    "last_checked": "2026-04-20T16:22:01.124937+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:00:44.862297+00:00"
+    "last_checked": "2026-04-20T16:22:09.663625+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:00:51.262193+00:00"
+    "last_checked": "2026-04-20T16:22:50.568751+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:00:51.522757+00:00"
+    "last_checked": "2026-04-20T16:22:50.729641+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:01:10.254374+00:00"
+    "last_checked": "2026-04-20T16:23:07.281314+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:01:19.266673+00:00"
+    "last_checked": "2026-04-20T16:23:16.301216+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:01:27.769448+00:00"
+    "last_checked": "2026-04-20T16:23:25.656322+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-04-20T12:01:31.367966+00:00"
+    "last_checked": "2026-04-20T16:23:30.766640+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,11 +77,9 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-04-20T12:01:31.654923+00:00",
-    "errors": [
-      "VRBO \u2014 Ionia, MI (Aug 28-30)"
-    ],
+    "time": "2026-04-20T16:23:31.425792+00:00",
+    "errors": [],
     "bot_hits": [],
-    "ok": false
+    "ok": true
   }
 }
