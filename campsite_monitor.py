@@ -661,12 +661,11 @@ def scrape_michigan_dnr(page, url: str) -> list[dict]:
     Availability code 0 = open/available; 1 = reserved; 3 = closed; 4-5 = not reservable.
     resourceLocationId -2147483575 = Ionia Recreation Area
 
-    Uses a Playwright page to establish a real browser session first, then extracts cookies
-    to authenticate the subsequent API calls (direct urllib calls get 403 without a session).
+    Makes API calls via page.evaluate() (fetch from inside the browser) so the request
+    carries the full browser context — cookies, headers, fingerprint — bypassing 403s.
     """
-    BASE = "https://midnrreservations.com/api"
     BOOK_URL = "https://midnrreservations.com/camping/search#resourceLocationId=-2147483575"
-    RESOURCE_LOCATION_ID = -2147483575  # Ionia Recreation Area
+    RESOURCE_LOCATION_ID = -2147483575
     MAPS = {
         "Modern Campground (sites 1–50)":   -2147483378,
         "Modern Campground (sites 51–100)": -2147483377,
@@ -674,52 +673,47 @@ def scrape_michigan_dnr(page, url: str) -> list[dict]:
         "Beechwood Campground":             -2147482934,
     }
 
-    # Navigate to the site to establish a valid session and collect cookies
+    # Navigate to establish a real browser session
     try:
         page.goto("https://midnrreservations.com/", wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_timeout(2000)  # let any JS set session cookies
+        page.wait_for_timeout(3000)
     except Exception as e:
         log(f"  Michigan DNR: failed to load session page — {e}")
         return []
 
-    cookies = page.context.cookies()
-    cookie_str = "; ".join(f"{c['name']}={c['value']}" for c in cookies)
-
-    HEADERS = {
-        "User-Agent": (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-        ),
-        "Accept":          "application/json, text/plain, */*",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer":         "https://midnrreservations.com/",
-        "Origin":          "https://midnrreservations.com",
-        "Cookie":          cookie_str,
-        "sec-fetch-dest":  "empty",
-        "sec-fetch-mode":  "cors",
-        "sec-fetch-site":  "same-origin",
-    }
-
     results = []
     for name, map_id in MAPS.items():
-        params = urllib.parse.urlencode({
-            "mapId":                  map_id,
-            "resourceLocationId":     RESOURCE_LOCATION_ID,
-            "startDate":              "2026-08-28",
-            "endDate":                "2026-08-30",
-            "bookingCategoryId":      0,
-            "partySize":              2,
-            "equipmentCategoryId":    -32768,
-            "subEquipmentCategoryId": -32768,
-            "numEquipment":           1,
-            "isReserving":            "true",
-            "filterData":             "[]",
-        })
-        avail_url = f"{BASE}/availability/map?{params}"
+        params = (
+            f"mapId={map_id}"
+            f"&resourceLocationId={RESOURCE_LOCATION_ID}"
+            f"&startDate=2026-08-28&endDate=2026-08-30"
+            f"&bookingCategoryId=0&partySize=2"
+            f"&equipmentCategoryId=-32768&subEquipmentCategoryId=-32768"
+            f"&numEquipment=1&isReserving=true&filterData=%5B%5D"
+        )
+        avail_url = f"https://midnrreservations.com/api/availability/map?{params}"
         try:
-            req = urllib.request.Request(avail_url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as r:
-                data = json.loads(r.read())
+            # Make the fetch request FROM INSIDE the browser — carries full session context
+            data = page.evaluate("""async (url) => {
+                const r = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Referer': 'https://midnrreservations.com/',
+                        'sec-fetch-dest': 'empty',
+                        'sec-fetch-mode': 'cors',
+                        'sec-fetch-site': 'same-origin'
+                    }
+                });
+                if (!r.ok) return {error: r.status};
+                return await r.json();
+            }""", avail_url)
+
+            if data.get("error"):
+                log(f"  Michigan DNR error ({name}): HTTP {data['error']}")
+                continue
+
             ra = data.get("resourceAvailabilities", {})
             open_count = sum(
                 1 for arr in ra.values()
@@ -922,6 +916,35 @@ def write_status_page(state: dict):
         days_to_trip_str, days_to_trip_sub = "Past", ""
 
     days_left = (EXPIRY_DATE - date.today()).days
+
+    # Build alert history HTML
+    alert_history = list(reversed(state.get("alert_history", [])))
+    if alert_history:
+        history_rows = ""
+        for h in alert_history[:20]:
+            try:
+                dt = datetime.fromisoformat(h["found_at"]).strftime("%b %d at %I:%M %p UTC")
+            except Exception:
+                dt = h.get("found_at", "")[:16]
+            history_rows += f"""
+            <div style="padding:10px 0;border-bottom:1px solid #f3f4f6;">
+              <div style="font-size:13px;font-weight:600;color:#111827;">
+                <a href="{h['href']}" target="_blank" style="color:#16a34a;text-decoration:none;">
+                  {h['title'][:90]}
+                </a>
+              </div>
+              <div style="font-size:11px;color:#9ca3af;margin-top:2px;">
+                {h['source']} &middot; Found {dt}
+              </div>
+            </div>"""
+        alert_history_html = f"""
+        <div class="section-header" style="margin-top:32px">
+          <h2 class="section-title">&#x2605; Listings Found</h2>
+          <p class="section-sub">Alerts that were sent — listings may no longer be available</p>
+        </div>
+        <div class="card">{history_rows}</div>"""
+    else:
+        alert_history_html = ""
 
     rows_html = ""
     for search in SEARCHES:
@@ -1138,6 +1161,7 @@ def write_status_page(state: dict):
     <p class="section-sub">Email + GitHub Issue created when new listings appear</p>
   </div>
   {rows_html}
+  {alert_history_html}
   <div class="section-header" style="margin-top:32px">
     <h2 class="section-title">Recent Activity</h2>
   </div>
@@ -1602,6 +1626,18 @@ def main():
 
     if alerts:
         log(f"Sending alerts for {len(alerts)} search(es)...")
+
+        # Save alert history to state so dashboard can show past finds
+        alert_history = state.get("alert_history", [])
+        for a in alerts:
+            for r in a["results"][:10]:
+                alert_history.append({
+                    "source":    a["name"],
+                    "title":     r["title"][:100],
+                    "href":      r["href"],
+                    "found_at":  datetime.now(timezone.utc).isoformat(),
+                })
+        state["alert_history"] = alert_history[-50:]  # keep last 50
 
         try:
             send_alert(alerts)
