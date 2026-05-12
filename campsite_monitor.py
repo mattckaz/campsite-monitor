@@ -1500,10 +1500,14 @@ def main():
         return
 
     log("--- Monitor run started ---")
-    state  = load_state()
-    alerts = []
+    state        = load_state()
+    alerts       = []
     scraper_errors   = []
     scraper_bot_hits = []
+
+    # Permanent record of every listing key we've ever alerted on.
+    # Survives git push failures — prevents duplicate alerts even if state resets.
+    alerted_keys: set = set(state.get("alerted_keys", []))
 
     with sync_playwright() as pw:
         chromium = pw.chromium.launch(
@@ -1587,17 +1591,19 @@ def main():
             prev_keys  = set(prev.get("keys", []))
             curr_count = len(results)
             curr_keys  = {r["title"][:80] for r in results}
-            new_keys   = curr_keys - prev_keys
 
-            log(f"  {curr_count} listing(s) found (was {prev_count})")
+            # Only alert on keys we have NEVER alerted on before (across all runs)
+            truly_new_keys = curr_keys - alerted_keys
 
-            if curr_count > 0 and (prev_count == 0 or new_keys):
+            log(f"  {curr_count} listing(s) found (was {prev_count}), {len(truly_new_keys)} never alerted")
+
+            if curr_count > 0 and truly_new_keys:
                 alerts.append({
                     "name":       name,
                     "url":        url,
                     "count":      curr_count,
                     "prev_count": prev_count,
-                    "results":    results,
+                    "results":    [r for r in results if r["title"][:80] in truly_new_keys],
                 })
 
             state[name] = {
@@ -1631,6 +1637,8 @@ def main():
         alert_history = state.get("alert_history", [])
         for a in alerts:
             for r in a["results"][:10]:
+                key = r["title"][:80]
+                alerted_keys.add(key)  # mark as permanently alerted
                 alert_history.append({
                     "source":    a["name"],
                     "title":     r["title"][:100],
@@ -1638,6 +1646,7 @@ def main():
                     "found_at":  datetime.now(timezone.utc).isoformat(),
                 })
         state["alert_history"] = alert_history[-50:]  # keep last 50
+        state["alerted_keys"]  = list(alerted_keys)   # persist forever
 
         try:
             send_alert(alerts)
