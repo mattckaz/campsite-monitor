@@ -1679,6 +1679,12 @@ def main():
         )
         if issue_url:
             log(f"GitHub Issue created: {issue_url}")
+
+        # Save state again now that alerted_keys is updated — critical for deduplication
+        save_state(state)
+        write_status_page(state)
+        deploy_to_github()
+
     else:
         log("No new listings. No alerts sent.")
 
