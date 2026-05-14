@@ -17,45 +17,45 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:20:02.047792+00:00"
+    "last_checked": "2026-05-14T14:13:00.165631+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:21:06.146440+00:00"
+    "last_checked": "2026-05-14T14:14:04.274213+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:21:48.005578+00:00"
+    "last_checked": "2026-05-14T14:14:45.501711+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:21:48.189400+00:00"
+    "last_checked": "2026-05-14T14:14:45.760334+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 2,
     "keys": [
-      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map",
-      "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore"
+      "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
+      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map"
     ],
-    "last_checked": "2026-05-14T10:22:03.320220+00:00"
+    "last_checked": "2026-05-14T14:15:01.092280+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:22:12.423495+00:00"
+    "last_checked": "2026-05-14T14:15:10.855586+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:22:20.600847+00:00"
+    "last_checked": "2026-05-14T14:15:20.434447+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-14T10:22:23.881582+00:00"
+    "last_checked": "2026-05-14T14:15:23.853689+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -80,9 +80,27 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-05-14T10:22:24.144943+00:00",
+    "time": "2026-05-14T14:15:24.107418+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
-  }
+  },
+  "alert_history": [
+    {
+      "source": "Booking.com \u2014 Ionia, MI (Aug 28-30)",
+      "title": "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScored 10\n10\nExceptional\n",
+      "href": "https://www.booking.com/hotel/us/main-street-inn-lowell1.html",
+      "found_at": "2026-05-14T14:15:25.021134+00:00"
+    },
+    {
+      "source": "Booking.com \u2014 Ionia, MI (Aug 28-30)",
+      "title": "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map14.8 miles from Ioni",
+      "href": "https://www.booking.com/hotel/us/lakefront-fishing-with-hot-tub-and-kayaks.html",
+      "found_at": "2026-05-14T14:15:25.021147+00:00"
+    }
+  ],
+  "alerted_keys": [
+    "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
+    "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map"
+  ]
 }
