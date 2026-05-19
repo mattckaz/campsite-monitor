@@ -17,45 +17,45 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:20:34.901636+00:00"
+    "last_checked": "2026-05-19T23:03:00.949111+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:21:39.011245+00:00"
+    "last_checked": "2026-05-19T23:03:09.636290+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:22:22.995926+00:00"
+    "last_checked": "2026-05-19T23:03:51.681066+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:22:23.298535+00:00"
+    "last_checked": "2026-05-19T23:03:55.765906+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 2,
     "keys": [
-      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map",
-      "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore"
+      "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
+      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map"
     ],
-    "last_checked": "2026-05-19T21:23:31.639337+00:00"
+    "last_checked": "2026-05-19T23:04:11.099422+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:23:41.353945+00:00"
+    "last_checked": "2026-05-19T23:04:29.779057+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:23:49.977472+00:00"
+    "last_checked": "2026-05-19T23:04:37.828622+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T21:23:53.691232+00:00"
+    "last_checked": "2026-05-19T23:04:41.189109+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -80,7 +80,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-05-19T21:23:53.960904+00:00",
+    "time": "2026-05-19T23:04:41.447456+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
