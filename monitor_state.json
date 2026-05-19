@@ -17,45 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:46:18.464002+00:00"
+    "last_checked": "2026-05-19T11:19:17.327939+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:46:26.670094+00:00"
+    "last_checked": "2026-05-19T11:20:21.442523+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:47:08.709712+00:00"
+    "last_checked": "2026-05-19T11:21:04.185333+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:47:08.912961+00:00"
+    "last_checked": "2026-05-19T11:21:04.373454+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
-    "count": 2,
-    "keys": [
-      "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
-      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map"
-    ],
-    "last_checked": "2026-05-19T07:47:24.142464+00:00"
+    "count": 0,
+    "keys": [],
+    "last_checked": "2026-05-19T11:21:19.424465+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:47:33.466739+00:00"
+    "last_checked": "2026-05-19T11:21:28.168624+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:47:41.910370+00:00"
+    "last_checked": "2026-05-19T11:21:36.831646+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-05-19T07:47:45.708151+00:00"
+    "last_checked": "2026-05-19T11:21:40.123645+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -80,7 +77,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-05-19T07:47:45.946737+00:00",
+    "time": "2026-05-19T11:21:40.389147+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
