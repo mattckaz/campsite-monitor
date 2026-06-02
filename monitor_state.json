@@ -17,44 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T03:59:32.323354+00:00"
+    "last_checked": "2026-06-02T08:43:21.682406+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:00:36.420203+00:00"
+    "last_checked": "2026-06-02T08:43:29.831429+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:01:23.437130+00:00"
+    "last_checked": "2026-06-02T08:44:11.152147+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:01:23.704322+00:00"
+    "last_checked": "2026-06-02T08:44:11.274301+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
-    "count": 1,
-    "keys": [
-      "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map"
-    ],
-    "last_checked": "2026-06-02T04:01:39.214967+00:00"
+    "count": 0,
+    "keys": [],
+    "last_checked": "2026-06-02T08:44:26.302982+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:01:52.118354+00:00"
+    "last_checked": "2026-06-02T08:44:35.685111+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:02:02.556680+00:00"
+    "last_checked": "2026-06-02T08:44:44.169437+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-02T04:02:06.698393+00:00"
+    "last_checked": "2026-06-02T08:44:48.069181+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -79,7 +77,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-06-02T04:02:06.904013+00:00",
+    "time": "2026-06-02T08:44:48.313858+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
