@@ -17,29 +17,29 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:56:53.777481+00:00"
+    "last_checked": "2026-06-03T23:44:59.720716+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:57:57.954626+00:00"
+    "last_checked": "2026-06-03T23:46:03.821213+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:58:43.950118+00:00"
+    "last_checked": "2026-06-03T23:46:45.393641+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:58:44.118863+00:00"
+    "last_checked": "2026-06-03T23:46:45.598151+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 1,
     "keys": [
       "Candlestone Golf and Resort\nOpens in new window\nBeldingShow on map12.5 miles fro"
     ],
-    "last_checked": "2026-06-03T20:58:59.486637+00:00"
+    "last_checked": "2026-06-03T23:47:08.238090+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
@@ -49,12 +49,12 @@
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:59:17.785848+00:00"
+    "last_checked": "2026-06-03T23:47:23.305340+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-03T20:59:22.032506+00:00"
+    "last_checked": "2026-06-03T23:47:26.718459+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -79,10 +79,12 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-06-03T20:59:22.295277+00:00",
+    "time": "2026-06-03T23:47:26.972352+00:00",
     "errors": [],
-    "bot_hits": [],
-    "ok": true
+    "bot_hits": [
+      "Vacasa \u2014 Ionia, MI (Aug 28-30)"
+    ],
+    "ok": false
   },
   "alert_history": [
     {
