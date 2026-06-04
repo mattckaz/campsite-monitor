@@ -17,44 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:55:32.547950+00:00"
+    "last_checked": "2026-06-04T20:06:59.852734+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:56:36.678432+00:00"
+    "last_checked": "2026-06-04T20:08:03.963329+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:57:18.149908+00:00"
+    "last_checked": "2026-06-04T20:08:44.950657+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:57:18.385553+00:00"
+    "last_checked": "2026-06-04T20:08:45.113627+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
-    "count": 1,
-    "keys": [
-      "Candlestone Golf and Resort\nOpens in new window\nBeldingShow on map12.5 miles fro"
-    ],
-    "last_checked": "2026-06-04T16:57:33.895995+00:00"
+    "count": 0,
+    "keys": [],
+    "last_checked": "2026-06-04T20:08:59.784159+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:57:43.489420+00:00"
+    "last_checked": "2026-06-04T20:09:09.470728+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:57:58.147381+00:00"
+    "last_checked": "2026-06-04T20:09:18.798400+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-04T16:58:01.793315+00:00"
+    "last_checked": "2026-06-04T20:09:22.696407+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -79,7 +77,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-06-04T16:58:02.096697+00:00",
+    "time": "2026-06-04T20:09:22.965157+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
