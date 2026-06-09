@@ -17,42 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:49:21.324193+00:00"
+    "last_checked": "2026-06-09T23:18:23.053962+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:50:25.405174+00:00"
+    "last_checked": "2026-06-09T23:19:27.159025+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:51:07.640496+00:00"
+    "last_checked": "2026-06-09T23:20:13.987572+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:51:07.820387+00:00"
+    "last_checked": "2026-06-09T23:20:14.154893+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:51:21.507754+00:00"
+    "last_checked": "2026-06-09T23:20:27.631257+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T18:09:10.512130+00:00"
+    "last_checked": "2026-06-09T23:21:32.785227+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:51:35.444937+00:00"
+    "last_checked": "2026-06-09T23:21:40.846186+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-06-09T21:51:38.584338+00:00"
+    "last_checked": "2026-06-09T23:21:44.061463+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,12 +77,10 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-06-09T21:51:38.813806+00:00",
+    "time": "2026-06-09T23:21:44.299808+00:00",
     "errors": [],
-    "bot_hits": [
-      "Vacasa \u2014 Ionia, MI (Aug 28-30)"
-    ],
-    "ok": false
+    "bot_hits": [],
+    "ok": true
   },
   "alert_history": [
     {
