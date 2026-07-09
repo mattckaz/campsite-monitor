@@ -17,42 +17,44 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:09:19.864743+00:00"
+    "last_checked": "2026-07-09T02:58:52.022973+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
-    "count": 0,
-    "keys": [],
-    "last_checked": "2026-07-08T23:10:23.986927+00:00"
+    "count": 1,
+    "keys": [
+      "Home in Belding\nPets more than welcome, plus a gym!\nNew place to stay\nNew\n,\n\u00a0\u00b7\u00a0\n"
+    ],
+    "last_checked": "2026-07-09T02:59:56.219178+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:05.012531+00:00"
+    "last_checked": "2026-07-09T03:00:38.707108+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:05.252631+00:00"
+    "last_checked": "2026-07-09T03:00:39.019869+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:20.065941+00:00"
+    "last_checked": "2026-07-09T03:00:52.930583+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:28.814889+00:00"
+    "last_checked": "2026-07-09T03:01:02.253105+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:37.629479+00:00"
+    "last_checked": "2026-07-09T03:01:12.082599+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-08T23:11:41.440238+00:00"
+    "last_checked": "2026-07-09T03:01:15.552818+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,7 +79,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-07-08T23:11:41.703427+00:00",
+    "time": "2026-07-09T03:01:15.905920+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
@@ -100,11 +102,18 @@
       "title": "Candlestone Golf and Resort\nOpens in new window\nBeldingShow on map12.5 miles from Ionia\nScored 7.8\n7",
       "href": "https://www.booking.com/hotel/us/candlestone-golf-amp-resort.html",
       "found_at": "2026-05-21T20:09:30.928475+00:00"
+    },
+    {
+      "source": "Airbnb \u2014 Ionia, MI (Aug 28-30)",
+      "title": "Home in Belding\nPets more than welcome, plus a gym!\nNew place to stay\nNew\n,\n\u00a0\u00b7\u00a0\n3 bedrooms\n3 bedroom",
+      "href": "https://www.airbnb.com/rooms/1724957057464233175?check_in=2026-08-28&check_out=2026-08-30&adults=2",
+      "found_at": "2026-07-09T03:01:16.728559+00:00"
     }
   ],
   "alerted_keys": [
     "Candlestone Golf and Resort\nOpens in new window\nBeldingShow on map12.5 miles fro",
+    "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
     "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map",
-    "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore"
+    "Home in Belding\nPets more than welcome, plus a gym!\nNew place to stay\nNew\n,\n\u00a0\u00b7\u00a0\n"
   ]
 }
