@@ -15,44 +15,46 @@
     "last_checked": "2026-03-18T09:59:52.423948"
   },
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
-    "count": 0,
-    "keys": [],
-    "last_checked": "2026-07-25T06:18:34.250809+00:00"
+    "count": 1,
+    "keys": [
+      "Tucked - Away Cabin (4mi away, 1 site avail.)"
+    ],
+    "last_checked": "2026-07-25T09:47:40.565269+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:19:38.399193+00:00"
+    "last_checked": "2026-07-25T09:48:44.710920+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:21.023753+00:00"
+    "last_checked": "2026-07-25T09:49:27.464262+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:21.254940+00:00"
+    "last_checked": "2026-07-25T09:49:27.633279+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:35.049181+00:00"
+    "last_checked": "2026-07-25T09:50:35.306396+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:43.945337+00:00"
+    "last_checked": "2026-07-25T09:50:43.996479+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:53.077459+00:00"
+    "last_checked": "2026-07-25T09:50:53.086610+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T06:20:56.796179+00:00"
+    "last_checked": "2026-07-25T09:50:56.421498+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,7 +79,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-07-25T06:20:57.143881+00:00",
+    "time": "2026-07-25T09:50:56.681203+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
@@ -148,19 +150,26 @@
       "title": "Aug 21\u2009 to \u200923\nAug 21\u2009\u2013\u200923\nCabin in Lyons\nGarden-Level Apartment Overlooking the Grand River\n4 bedro",
       "href": "https://www.airbnb.com/rooms/19804456?check_in=2026-08-28&check_out=2026-08-30&adults=2",
       "found_at": "2026-07-09T07:40:18.058040+00:00"
+    },
+    {
+      "source": "Hipcamp \u2014 Ionia, MI (Aug 28-30)",
+      "title": "Tucked - Away Cabin (4mi away, 1 site avail.)",
+      "href": "https://www.hipcamp.com/en-US/land/michigan-tucked-away-cabin-ozxhrqkn",
+      "found_at": "2026-07-25T09:50:57.448395+00:00"
     }
   ],
   "alerted_keys": [
+    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nApartment in Ionia\nCozy Comfortable Apartment\n2 bedrooms\n",
     "Home in Belding\nPets more than welcome, plus a gym!\n3 bedrooms\n3 bedrooms\n,\n\u00a0\u00b7\u00a0\n",
+    "Aug 21\u2009 to \u200923\nAug 21\u2009\u2013\u200923\nCabin in Lyons\nGarden-Level Apartment Overlooking the",
+    "Tucked - Away Cabin (4mi away, 1 site avail.)",
+    "Home in Belding\nPets more than welcome, plus a gym!\nNew place to stay\nNew\n,\n\u00a0\u00b7\u00a0\n",
+    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nBungalow in Ionia\nLovely Bungalow\n1 bedroom\n1 bedroom\n,\n\u00a0",
     "Lakefront Fishing With Hot Tub and Kayaks\nOpens in new window\nBeldingShow on map",
     "Candlestone Golf and Resort\nOpens in new window\nBeldingShow on map12.5 miles fro",
-    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nTreehouse in Ionia\nTree Vistas Treehouse in Ionia Michiga",
-    "Home in Belding\nPets more than welcome, plus a gym!\nNew place to stay\nNew\n,\n\u00a0\u00b7\u00a0\n",
     "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nApartment in Saranac\n\"Find Your Happy\" Center Street Suit",
+    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nTreehouse in Ionia\nTree Vistas Treehouse in Ionia Michiga",
     "Aug 21\u2009 to \u200923\nAug 21\u2009\u2013\u200923\nHome in Ionia\nPrairie Creek Cottage Privacy on the Cr",
-    "Aug 21\u2009 to \u200923\nAug 21\u2009\u2013\u200923\nCabin in Lyons\nGarden-Level Apartment Overlooking the",
-    "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore",
-    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nApartment in Ionia\nCozy Comfortable Apartment\n2 bedrooms\n",
-    "Sep 4\u2009 to \u20096\nSep 4\u2009\u2013\u20096\nBungalow in Ionia\nLovely Bungalow\n1 bedroom\n1 bedroom\n,\n\u00a0"
+    "Main Street Inn\nOpens in new window\nLowellShow on map14.1 miles from Ionia\nScore"
   ]
 }
