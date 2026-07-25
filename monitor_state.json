@@ -19,44 +19,44 @@
     "keys": [
       "Tucked - Away Cabin (4mi away, 1 site avail.)"
     ],
-    "last_checked": "2026-07-25T15:03:12.316852+00:00"
+    "last_checked": "2026-07-25T16:57:57.167050+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 1,
     "keys": [
       "Superhost\nSuperhost\nCamper/RV in Ionia\n30\u2019 RV with 5 beds in beautiful rural far"
     ],
-    "last_checked": "2026-07-25T15:04:16.572316+00:00"
+    "last_checked": "2026-07-25T16:59:01.367183+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:04:58.575820+00:00"
+    "last_checked": "2026-07-25T16:59:43.716392+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:04:58.818205+00:00"
+    "last_checked": "2026-07-25T16:59:43.846557+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:06:06.769959+00:00"
+    "last_checked": "2026-07-25T16:59:58.096326+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:06:15.881758+00:00"
+    "last_checked": "2026-07-25T17:00:07.252803+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:06:33.010900+00:00"
+    "last_checked": "2026-07-25T17:00:16.539606+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-25T15:06:36.847652+00:00"
+    "last_checked": "2026-07-25T17:00:20.665096+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -81,7 +81,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-07-25T15:06:37.117581+00:00",
+    "time": "2026-07-25T17:00:20.941631+00:00",
     "errors": [],
     "bot_hits": [],
     "ok": true
