@@ -42,10 +42,10 @@ if _env_file.exists():
 #  CONFIGURATION
 # ─────────────────────────────────────────────────────────────
 
-GMAIL_ADDRESS      = "mattkaz@icloud.com"
+GMAIL_ADDRESS      = os.environ.get("GMAIL_ADDRESS", "")
 GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
-NOTIFY_EMAIL       = "mattkaz@icloud.com"
-NOTIFY_EMAILS      = [NOTIFY_EMAIL, "jmartello@gmail.com"]  # all alert recipients
+NOTIFY_EMAILS      = [e.strip() for e in os.environ.get("NOTIFY_EMAILS", "").split(",") if e.strip()]
+NOTIFY_EMAIL       = NOTIFY_EMAILS[0] if NOTIFY_EMAILS else ""  # primary recipient, used in a couple of log/status messages
 
 # GitHub — dashboard (Pages) + Issues alerts + state persistence
 # In GitHub Actions: GITHUB_TOKEN is automatically provided by the runner (scoped to this repo)

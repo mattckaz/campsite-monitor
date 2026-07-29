@@ -85,7 +85,9 @@ jobs:
 
       - name: Run campsite monitor
         env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_EMAILS: ${{ secrets.NOTIFY_EMAILS }}
           # GITHUB_TOKEN is automatically provided by Actions — no secret needed
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # GH_TOKEN (personal access token) is required to push the dashboard
@@ -133,6 +135,8 @@ jobs:
       - name: Email on workflow failure
         if: failure()
         env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_EMAILS: ${{ secrets.NOTIFY_EMAILS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python campsite_monitor.py --notify-failure
