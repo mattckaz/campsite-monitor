@@ -17,42 +17,42 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:10:46.956217+00:00"
+    "last_checked": "2026-07-30T23:07:49.543171+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:11:51.063919+00:00"
+    "last_checked": "2026-07-30T23:08:53.645498+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T19:28:31.971691+00:00"
+    "last_checked": "2026-07-30T23:09:38.822202+00:00"
   },
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:13:05.586526+00:00"
+    "last_checked": "2026-07-30T23:09:39.033461+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:13:19.101407+00:00"
+    "last_checked": "2026-07-30T23:09:51.212870+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:13:27.578030+00:00"
+    "last_checked": "2026-07-30T23:09:59.613906+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:13:37.141957+00:00"
+    "last_checked": "2026-07-30T23:10:09.455949+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-07-30T21:13:41.493122+00:00"
+    "last_checked": "2026-07-30T23:10:12.740225+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,12 +77,10 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-07-30T21:13:41.689853+00:00",
+    "time": "2026-07-30T23:10:13.021915+00:00",
     "errors": [],
-    "bot_hits": [
-      "VRBO \u2014 Ionia, MI (Aug 28-30)"
-    ],
-    "ok": false
+    "bot_hits": [],
+    "ok": true
   },
   "alert_history": [
     {
