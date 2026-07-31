@@ -63,7 +63,7 @@ DASHBOARD_URL = "https://mattckaz.github.io/campsite-status/"
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 
 # Monitor schedule
-EXPIRY_DATE = date(2026, 7, 31)
+EXPIRY_DATE = date(2026, 8, 18)
 TRIP_START  = date(2026, 8, 28)
 
 # ~10-mile bounding box around Ionia, MI  (42.982743, -85.063192)
@@ -1367,7 +1367,7 @@ def send_alert(alerts: list[dict]):
         </a>
       </div>
       <p style="color:#9ca3af;font-size:11px;text-align:center;margin-top:20px">
-        Sent by your campsite monitor &#183; Expires July 31, 2026
+        Sent by your campsite monitor &#183; Expires August 18, 2026
       </p>
     </body></html>"""
 
@@ -1496,7 +1496,7 @@ def main():
         return
 
     if date.today() > EXPIRY_DATE:
-        log("Monitor expired (past July 31, 2026). Exiting.")
+        log("Monitor expired (past August 18, 2026). Exiting.")
         return
 
     log("--- Monitor run started ---")
