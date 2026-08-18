@@ -17,12 +17,12 @@
   "Hipcamp \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:36:34.498716+00:00"
+    "last_checked": "2026-08-18T10:27:49.987432+00:00"
   },
   "Airbnb \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:37:38.591315+00:00"
+    "last_checked": "2026-08-18T10:28:54.087158+00:00"
   },
   "VRBO \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
@@ -32,27 +32,27 @@
   "Recreation.gov \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:38:20.194105+00:00"
+    "last_checked": "2026-08-18T10:29:34.039918+00:00"
   },
   "Booking.com \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:38:33.373919+00:00"
+    "last_checked": "2026-08-18T10:29:46.498738+00:00"
   },
   "Vacasa \u2014 Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:38:41.695993+00:00"
+    "last_checked": "2026-08-18T10:29:54.897877+00:00"
   },
   "GlampingHub \u2014 Near Ionia, MI (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:38:50.923433+00:00"
+    "last_checked": "2026-08-18T10:30:03.540678+00:00"
   },
   "Michigan DNR \u2014 Ionia SRA + Beechwood (Aug 28-30)": {
     "count": 0,
     "keys": [],
-    "last_checked": "2026-08-18T08:38:54.203155+00:00"
+    "last_checked": "2026-08-18T10:30:07.289075+00:00"
   },
   "Campspot \u2014 Alice Springs RV Park (Aug 28-30)": {
     "count": 3,
@@ -77,7 +77,7 @@
     "last_checked": "2026-03-24T23:12:03.908137+00:00"
   },
   "_last_run": {
-    "time": "2026-08-18T08:38:54.386549+00:00",
+    "time": "2026-08-18T10:30:07.475812+00:00",
     "errors": [],
     "bot_hits": [
       "VRBO \u2014 Ionia, MI (Aug 28-30)"
